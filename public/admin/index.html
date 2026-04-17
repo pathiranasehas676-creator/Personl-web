@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis Security Nexus - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cyber-grid"></div>
+
+    <!-- LOGIN SCREEN -->
+    <div class="login-container" id="login-container">
+        <div class="glass-card login-card">
+            <div class="terminal-header">
+                <i class="fa-solid fa-terminal"></i> GENESIS SECURE LOGIN
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="ACCESS_ID" required autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="PASSPHRASE" required autocomplete="off">
+                </div>
+                <button type="submit" class="cyber-btn" id="login-btn">
+                    <span>AUTHENTICATE</span>
+                    <i class="fa-solid fa-lock"></i>
+                </button>
+                <div id="login-error" class="error-msg"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard-container" id="dashboard-container" style="display: none;">
+        <nav class="sidebar glass-card">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="brand-text">
+                    <h2>NEXUS</h2>
+                    <span>COMMAND CENTER</span>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active" data-target="sys-overview">
+                    <i class="fa-solid fa-satellite-dish"></i> Overview
+                </li>
+                <li data-target="sys-messages">
+                    <i class="fa-solid fa-envelope-open-text"></i> Intercepts
+                    <span class="badge" id="msg-badge">0</span>
+                </li>
+                <li data-target="sys-projects">
+                    <i class="fa-solid fa-diagram-project"></i> Directives
+                </li>
+            </ul>
+
+            <button class="logout-btn" id="logout-btn">
+                <i class="fa-solid fa-person-walking-arrow-right"></i> Terminate Session
+            </button>
+        </nav>
+
+        <main class="dashboard-content">
+            <header class="topbar">
+                <h1 id="current-view-title">System Overview</h1>
+                <div class="system-status">
+                    <div class="status-indicator active"></div>
+                    <span>ENCRYPTED LINK ESTABLISHED</span>
+                </div>
+            </header>
+
+            <div class="view-section active" id="sys-overview">
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                        <div class="stat-info">
+                            <h3>Total Intercepts</h3>
+                            <h2 id="stat-msgs">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <div class="stat-info">
+                            <h3>Active Directives</h3>
+                            <h2 id="stat-projs">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-section" id="sys-messages">
+                <div class="glass-card panel">
+                    <h2>Recent Communications</h2>
+                    <p>Incoming data streams from the external portal.</p>
+                    <div class="table-container">
+                        <table id="messages-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Identity</th>
+                                    <th>Transmission</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Messages will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-section" id="sys-projects">
+                <div class="glass-card panel">
+                    <div class="panel-header">
+                        <h2>Deployed Directives (Projects)</h2>
+                        <button class="cyber-btn small" id="add-project-btn">
+                            <i class="fa-solid fa-plus"></i> New
+                        </button>
+                    </div>
+                    <div class="projects-grid" id="admin-projects-grid">
+                        <!-- Projects populated here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
