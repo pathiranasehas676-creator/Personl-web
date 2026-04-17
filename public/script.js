@@ -182,7 +182,7 @@ function renderProjects(projects) {
         card.innerHTML = `
             <div class="project-img-wrapper">
                 <div class="project-placeholder ${gradClass}">
-                    <i class="${iconClass}" style="font-size: 4rem; opacity: 0.2;"></i>
+                    <i class="${iconClass}" style="font-size: 4rem; opacity: 0.4;"></i>
                 </div>
                 ${badgeText ? `<div class="dl-badge">${badgeText}</div>` : ''}
             </div>
