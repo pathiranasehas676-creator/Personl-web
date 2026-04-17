@@ -735,8 +735,8 @@ h1, h2, h3, h4 {
 /* Redesigned Projects (Immersive Cards) */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 2rem;
 }
 
 .project-card {
@@ -1350,5 +1350,28 @@ h1, h2, h3, h4 {
   
   .contact-wrapper {
     padding: 1.5rem;
+  }
+
+  .section-title h2 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .skill-category {
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 }
