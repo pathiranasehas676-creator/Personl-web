@@ -15,6 +15,11 @@
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-glow: rgba(0, 242, 255, 0.03);
   
+  /* Semantic Colors */
+  --success: #2ed573;
+  --warning: #ffa502;
+  --danger: #ff4757;
+  
   /* Misc */
   --container: min(1300px, calc(100vw - 3rem));
   --radius-xl: 30px;
