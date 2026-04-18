@@ -773,7 +773,7 @@ h1, h2, h3, h4 {
 /* Redesigned Skills (Bento Grid) */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
 }
 
@@ -794,6 +794,26 @@ h1, h2, h3, h4 {
 
 .skill-card:hover .project-placeholder {
   transform: scale(1.1) rotate(-2deg);
+}
+
+@media screen and (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  
+  .skill-card {
+    height: auto;
+    min-height: 350px;
+  }
+
+  .skill-card .project-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .skill-card .project-content {
+    padding: 1.25rem !important;
+  }
 }
 
 
