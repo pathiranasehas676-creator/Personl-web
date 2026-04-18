@@ -292,7 +292,7 @@ let certifications = [
         title: "Introduction to Cyber Security",
         issuer: "Simplilearn SkillUp",
         category: "Security",
-        image: "assets/certs/thumbnails/skillup.png", 
+        image: "assets/certs/originals/simplilearn_cyber_security.png", 
         verify_url: "assets/certs/upload/SkillUp.pdf",
         original_url: "assets/certs/originals/simplilearn_cyber_security.png"
     },
@@ -301,7 +301,7 @@ let certifications = [
         title: "Cybrary Orientation",
         issuer: "Cybrary",
         category: "Security",
-        image: "assets/certs/thumbnails/cybrary_orientation.png",
+        image: "assets/certs/originals/cybrary_orientation.png",
         verify_url: "assets/certs/upload/cybrary-cert-cybrary-orientation-2025.pdf",
         original_url: "assets/certs/originals/cybrary_orientation.png"
     },
@@ -310,7 +310,7 @@ let certifications = [
         title: "Offensive Security Operations",
         issuer: "Cybrary",
         category: "Security",
-        image: "assets/certs/thumbnails/offensive_sec.png",
+        image: "assets/certs/originals/cybrary_offensive_security.png",
         verify_url: "assets/certs/upload/cybrary-cert-offensive-security-operations.pdf",
         original_url: "assets/certs/originals/cybrary_offensive_security.png"
     },
@@ -319,7 +319,7 @@ let certifications = [
         title: "AI Infrastructure: AI Hypercomputer",
         issuer: "Google Cloud",
         category: "Cloud & AI",
-        image: "assets/certs/thumbnails/google_ai_infra.png",
+        image: "assets/certs/originals/google_ai_hypercomputer.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_ai_hypercomputer.png"
     },
@@ -328,7 +328,7 @@ let certifications = [
         title: "Gemini Image-to-Sheets Hack",
         issuer: "Google Cloud",
         category: "Cloud & AI",
-        image: "assets/certs/thumbnails/google_gemini_hack.png",
+        image: "assets/certs/originals/google_gemini_hack.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_gemini_hack.png"
     },
@@ -337,7 +337,7 @@ let certifications = [
         title: "Tame Your Inbox with AI",
         issuer: "Google Cloud",
         category: "Cloud & AI",
-        image: "assets/certs/thumbnails/google_ai_inbox.png",
+        image: "assets/certs/originals/google_ai_inbox.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_ai_inbox.png"
     },
@@ -346,7 +346,7 @@ let certifications = [
         title: "GDC Air-Gapped Security Operator",
         issuer: "Google Cloud",
         category: "Security",
-        image: "assets/certs/thumbnails/google_security_operator.png",
+        image: "assets/certs/originals/google_security_operator.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_security_operator.png"
     },
@@ -355,7 +355,7 @@ let certifications = [
         title: "Skills Arcade Trivia Week 4",
         issuer: "Google Cloud",
         category: "Cloud & AI",
-        image: "assets/certs/thumbnails/google_arcade_trivia_4.png",
+        image: "assets/certs/originals/google_trivia_week4.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_trivia_week4.png"
     },
@@ -364,7 +364,7 @@ let certifications = [
         title: "Amplify Exec Voices with AI",
         issuer: "Google Cloud",
         category: "Cloud & AI",
-        image: "assets/certs/thumbnails/google_ai_amplify.png",
+        image: "assets/certs/originals/google_ai_amplify.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_ai_amplify.png"
     },
@@ -373,7 +373,7 @@ let certifications = [
         title: "Personal Feedback Agent",
         issuer: "Google Cloud",
         category: "Cloud & AI",
-        image: "assets/certs/thumbnails/google_ai_feedback.png",
+        image: "assets/certs/originals/google_feedback_agent.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_feedback_agent.png"
     },
@@ -382,7 +382,7 @@ let certifications = [
         title: "Skills Arcade Trivia Week 1",
         issuer: "Google Cloud",
         category: "Cloud & AI",
-        image: "assets/certs/thumbnails/google_arcade_trivia_1.png",
+        image: "assets/certs/originals/google_trivia_week1.png",
         verify_url: "https://www.cloudskillsboost.google/",
         original_url: "assets/certs/originals/google_trivia_week1.png"
     }
