@@ -9,12 +9,26 @@ let siteProfile = {
 
 // Custom Cursor Glow Effect
 const cursorGlow = document.getElementById('cursor-glow');
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
 document.addEventListener('mousemove', (e) => {
-    if (cursorGlow) {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
-    }
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
+
+function animateCursor() {
+    if (cursorGlow) {
+        // Smooth interpolation for "premium" feel
+        const ease = 0.15;
+        cursorX += (mouseX - cursorX) * ease;
+        cursorY += (mouseY - cursorY) * ease;
+        
+        cursorGlow.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    }
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
 
 // Update Footer Year
 const yearSpan = document.getElementById('year');
@@ -284,22 +298,31 @@ document.addEventListener('DOMContentLoaded', () => {
 // Mobile Navigation Toggle
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
+const navOverlay = document.getElementById('nav-overlay');
 const navLinksItems = document.querySelectorAll('.nav-link');
+
+function toggleMenu(isOpen) {
+    if (hamburger && navMenu) {
+        hamburger.classList.toggle('active', isOpen);
+        navMenu.classList.toggle('active', isOpen);
+        if (navOverlay) navOverlay.classList.toggle('active', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+}
 
 if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        const isOpen = !navMenu.classList.contains('active');
+        toggleMenu(isOpen);
     });
+
+    if (navOverlay) {
+        navOverlay.addEventListener('click', () => toggleMenu(false));
+    }
 
     // Close menu when clicking a link
     navLinksItems.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', () => toggleMenu(false));
     });
 }
 
