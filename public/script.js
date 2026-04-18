@@ -162,8 +162,8 @@ function renderSkills(skills) {
                 </div>
             </div>
             <div class="project-content">
-                <div class="project-type">${cat.name}</div>
-                <h3 class="project-title" style="font-size: 1.4rem; margin-bottom: 1rem;">Expertise Area</h3>
+                <div class="project-type">Expertise Area</div>
+                <h3 class="project-title" style="font-size: 1.4rem; margin-bottom: 1rem;">${cat.name}</h3>
                 <div class="project-tech">
                     ${catSkills.map(s => `
                         <span class="tech-pill">
@@ -276,6 +276,323 @@ function renderEducation(edu) {
     });
 }
 
+// Terminal Typing Animation Logic
+const terminalLines = [
+    { type: 'cmd', text: 'whoami' },
+    { type: 'out', text: 'Sehas Pathirana' },
+    { type: 'cmd', text: 'cat profile.json' },
+    { type: 'out', text: '{\n  "name": "Sehas Pathirana",\n  "role": "Full-Stack Developer",\n  "specialization": "Security Architecture",\n  "status": "Active"\n}' },
+    { type: 'cmd', text: '' } // Waiting prompt
+];
+
+// Certifications Data
+let certifications = [
+    {
+        id: 1,
+        title: "Introduction to Cyber Security",
+        issuer: "Simplilearn SkillUp",
+        category: "Security",
+        image: "assets/certs/thumbnails/skillup.png", 
+        verify_url: "assets/certs/upload/SkillUp.pdf",
+        original_url: "assets/certs/originals/simplilearn_cyber_security.png"
+    },
+    {
+        id: 2,
+        title: "Cybrary Orientation",
+        issuer: "Cybrary",
+        category: "Security",
+        image: "assets/certs/thumbnails/cybrary_orientation.png",
+        verify_url: "assets/certs/upload/cybrary-cert-cybrary-orientation-2025.pdf",
+        original_url: "assets/certs/originals/cybrary_orientation.png"
+    },
+    {
+        id: 3,
+        title: "Offensive Security Operations",
+        issuer: "Cybrary",
+        category: "Security",
+        image: "assets/certs/thumbnails/offensive_sec.png",
+        verify_url: "assets/certs/upload/cybrary-cert-offensive-security-operations.pdf",
+        original_url: "assets/certs/originals/cybrary_offensive_security.png"
+    },
+    {
+        id: 4,
+        title: "AI Infrastructure: AI Hypercomputer",
+        issuer: "Google Cloud",
+        category: "Cloud & AI",
+        image: "assets/certs/thumbnails/google_ai_infra.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_ai_hypercomputer.png"
+    },
+    {
+        id: 5,
+        title: "Gemini Image-to-Sheets Hack",
+        issuer: "Google Cloud",
+        category: "Cloud & AI",
+        image: "assets/certs/thumbnails/google_gemini_hack.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_gemini_hack.png"
+    },
+    {
+        id: 6,
+        title: "Tame Your Inbox with AI",
+        issuer: "Google Cloud",
+        category: "Cloud & AI",
+        image: "assets/certs/thumbnails/google_ai_inbox.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_ai_inbox.png"
+    },
+    {
+        id: 7,
+        title: "GDC Air-Gapped Security Operator",
+        issuer: "Google Cloud",
+        category: "Security",
+        image: "assets/certs/thumbnails/google_security_operator.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_security_operator.png"
+    },
+    {
+        id: 8,
+        title: "Skills Arcade Trivia Week 4",
+        issuer: "Google Cloud",
+        category: "Cloud & AI",
+        image: "assets/certs/thumbnails/google_arcade_trivia_4.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_trivia_week4.png"
+    },
+    {
+        id: 9,
+        title: "Amplify Exec Voices with AI",
+        issuer: "Google Cloud",
+        category: "Cloud & AI",
+        image: "assets/certs/thumbnails/google_ai_amplify.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_ai_amplify.png"
+    },
+    {
+        id: 10,
+        title: "Personal Feedback Agent",
+        issuer: "Google Cloud",
+        category: "Cloud & AI",
+        image: "assets/certs/thumbnails/google_ai_feedback.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_feedback_agent.png"
+    },
+    {
+        id: 11,
+        title: "Skills Arcade Trivia Week 1",
+        issuer: "Google Cloud",
+        category: "Cloud & AI",
+        image: "assets/certs/thumbnails/google_arcade_trivia_1.png",
+        verify_url: "https://www.cloudskillsboost.google/",
+        original_url: "assets/certs/originals/google_trivia_week1.png"
+    }
+];
+
+function renderCertifications(filter = 'All') {
+    const grid = document.getElementById('cert-grid');
+    if (!grid) return;
+
+    const filtered = filter === 'All' 
+        ? certifications 
+        : certifications.filter(c => c.category === filter);
+
+    grid.innerHTML = '';
+    
+    filtered.forEach((cert, index) => {
+        const card = document.createElement('div');
+        card.className = 'cert-card glass-card outer-glow reveal slide-up';
+        card.style.transitionDelay = `${index * 0.1}s`;
+        
+        card.innerHTML = `
+            <div class="cert-image">
+                <img src="${cert.image}" alt="${cert.title}">
+                <div class="cert-overlay">
+                    <button class="btn btn-sm btn-primary view-original" data-id="${cert.id}">View Original</button>
+                </div>
+            </div>
+            <div class="cert-info">
+                <div class="cert-tags">
+                    <span class="cert-tag">${cert.category}</span>
+                </div>
+                <h3>${cert.title}</h3>
+                <p>${cert.issuer}</p>
+            </div>
+        `;
+
+        const viewBtn = card.querySelector('.view-original');
+        viewBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openCertModal(cert);
+        });
+
+        grid.appendChild(card);
+    });
+
+    if (window.refreshReveal) window.refreshReveal();
+}
+
+// Modal Logic
+function openCertModal(cert) {
+    const modal = document.getElementById('cert-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalFrame = document.getElementById('modal-frame');
+    const caption = document.getElementById('modal-caption');
+    const loader = modal.querySelector('.modal-loader');
+
+    if (!modal || !modalImg || !modalFrame) return;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    loader.classList.add('active');
+    modalImg.style.display = 'none';
+    modalFrame.style.display = 'none';
+    
+    const source = cert.original_url || cert.verify_url || cert.image;
+    const isPDF = source.toLowerCase().endsWith('.pdf');
+    
+    caption.textContent = cert.title + ' - ' + cert.issuer;
+
+    if (isPDF) {
+        modalFrame.src = source;
+        modalFrame.onload = () => {
+            loader.classList.remove('active');
+            modalFrame.style.display = 'block';
+        };
+    } else {
+        modalImg.src = source;
+        modalImg.onload = () => {
+            loader.classList.remove('active');
+            modalImg.style.display = 'block';
+        };
+    }
+}
+
+function closeCertModal() {
+    const modal = document.getElementById('cert-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalFrame = document.getElementById('modal-frame');
+    
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        // Clear sources to stop loading/background processes
+        if (modalImg) modalImg.src = '';
+        if (modalFrame) modalFrame.src = '';
+    }
+}
+
+// Terminal Animation Setup
+async function initTerminalAnimation() {
+    const terminalBody = document.getElementById('terminal-body');
+    if (!terminalBody) return;
+
+    terminalBody.innerHTML = '';
+    
+    for (let i = 0; i < terminalLines.length; i++) {
+        const line = terminalLines[i];
+        if (line.type === 'cmd') {
+            await typeLine(line.text, terminalBody, i === terminalLines.length - 1);
+        } else {
+            await showOutput(line.text, terminalBody);
+            await sleep(500);
+        }
+    }
+}
+
+// Drag to Scroll Logic for Slider
+function initCertSlider() {
+    const slider = document.querySelector('.cert-slider-container');
+    const prevBtn = document.getElementById('cert-prev');
+    const nextBtn = document.getElementById('cert-next');
+    if (!slider) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Navigation Buttons
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            slider.scrollLeft -= slider.offsetWidth * 0.8;
+        });
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollLeft += slider.offsetWidth * 0.8;
+        });
+
+        // Update button states on scroll
+        const updateButtons = () => {
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+            if (prevBtn) prevBtn.classList.toggle('disabled', slider.scrollLeft <= 0);
+            if (nextBtn) nextBtn.classList.toggle('disabled', slider.scrollLeft >= maxScroll - 5);
+        };
+
+        slider.addEventListener('scroll', updateButtons);
+        window.addEventListener('resize', updateButtons);
+        setTimeout(updateButtons, 500); // Initial check
+    }
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        slider.style.cursor = 'grabbing';
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+        slider.style.cursor = 'grab';
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+        slider.style.cursor = 'grab';
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+}
+
+async function typeLine(text, container, isFinal) {
+    const p = document.createElement('p');
+    p.innerHTML = '<span class="cmd-prompt">$</span><span class="cmd-text"></span>';
+    container.appendChild(p);
+    const textSpan = p.querySelector('.cmd-text');
+    
+    for (let char of text) {
+        textSpan.textContent += char;
+        await sleep(Math.random() * 50 + 50);
+    }
+    
+    if (isFinal) {
+        const cursor = document.createElement('span');
+        cursor.className = 'terminal-cursor';
+        textSpan.appendChild(cursor);
+    } else {
+        await sleep(300);
+    }
+}
+
+async function showOutput(text, container) {
+    const output = document.createElement('pre');
+    output.className = text.startsWith('{') ? 'cmd-output json-output' : 'cmd-output';
+    output.textContent = text;
+    container.appendChild(output);
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Magnetic Button Effect
 function initMagneticButtons() {
     const magneticBtns = document.querySelectorAll('.btn-primary, .btn-icon, .btn-outline');
@@ -299,8 +616,37 @@ function initMagneticButtons() {
 
 // Start typing effect and CMS load when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Initial Certification Gallery Setup
+    renderCertifications();
+    initCertSlider();
+    
+    // Setup Filter Listeners
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            renderCertifications(e.currentTarget.getAttribute('data-filter'));
+        });
+    });
+
+    // Close Modal Listeners
+    const modal = document.getElementById('cert-modal');
+    const closeBtn = document.querySelector('.modal-close');
+    if (closeBtn) closeBtn.addEventListener('click', closeCertModal);
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeCertModal();
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCertModal();
+    });
+
     initializeCMS().then(() => {
         if (typingText) setTimeout(type, 1000);
+        
+        // Start terminal animation
+        initTerminalAnimation();
         
         // Initialize interactive effects after content is loaded
         initMagneticButtons();

@@ -113,18 +113,8 @@
                             <span class="dot green"></span>
                             <span class="terminal-title">sehas@portfolio:~</span>
                         </div>
-                        <div class="terminal-body">
-                            <p><span class="cmd-prompt">$</span> whoami</p>
-                            <p class="cmd-output">Sehas Pathirana</p>
-                            
-                            <p><span class="cmd-prompt">$</span> cat profile.json</p>
-                            <pre class="cmd-output json-output">{
-  "role": "Full-Stack Developer",
-  "focus": "Cyber Security",
-  "location": "Sri Lanka",
-  "stack": ["Flutter", "Node.js", "React", "Firebase"]
-}</pre>
-                            <p><span class="cmd-prompt">$</span> <span class="blink">_</span></p>
+                        <div class="terminal-body" id="terminal-body">
+                            <!-- Typing animation will populate this -->
                         </div>
                     </div>
                 </div>
@@ -193,6 +183,38 @@
                 
                 <div class="projects-grid" id="projects-grid">
                     <!-- Dynamic Projects Loading -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="certifications section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Technical <span class="text-gradient">Certifications</span></h2>
+                    <p class="section-subtitle">Industry-recognized credentials validating my expertise.</p>
+                </div>
+
+                <!-- NEW: Filter Bar -->
+                <div class="cert-filters reveal">
+                    <button class="filter-btn active" data-filter="All">All</button>
+                    <button class="filter-btn" data-filter="Security">Security</button>
+                    <button class="filter-btn" data-filter="Development">Development</button>
+                    <button class="filter-btn" data-filter="Cloud & AI">Cloud & AI</button>
+                </div>
+                
+                <div class="cert-slider-wrapper">
+                    <button class="slider-nav prev" id="cert-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="cert-slider-container reveal">
+                        <div class="cert-grid" id="cert-grid">
+                            <!-- Dynamic Certifications Loading -->
+                        </div>
+                    </div>
+                    <button class="slider-nav next" id="cert-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div class="slider-hint reveal">
+                    <i class="fa-solid fa-left-right"></i>
+                    <span>Drag or use arrows to explore</span>
                 </div>
             </div>
         </section>
@@ -285,6 +307,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Certificate Lightbox Modal -->
+    <div id="cert-modal" class="cert-modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content-wrapper">
+            <img id="modal-img" src="" alt="Certificate View">
+            <iframe id="modal-frame" src="" frameborder="0"></iframe>
+            <div class="modal-loader"></div>
+        </div>
+        <div id="modal-caption" class="modal-caption"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
