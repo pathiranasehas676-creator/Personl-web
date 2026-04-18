@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: sehas-portfolio
+    name: sehas.me
     env: node
     buildCommand: npm install
     startCommand: npm start
