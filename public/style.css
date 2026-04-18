@@ -838,6 +838,7 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
   font-size: 1.4rem;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 
 .skill-tags {
@@ -1045,8 +1046,8 @@ h1, h2, h3, h4 {
 
 .project.skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   width: 100%;
 }
 
@@ -1504,12 +1505,13 @@ h1, h2, h3, h4 {
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 9vw, 2.8rem) !important;
+    font-size: clamp(2rem, 10vw, 3.2rem) !important;
     max-width: 100% !important;
-    line-height: 1.15;
+    line-height: 1.1;
     margin-bottom: 1.5rem;
     text-align: center;
     word-wrap: break-word;
+    letter-spacing: -0.03em;
   }
 
   .hero-desc {
@@ -1521,8 +1523,8 @@ h1, h2, h3, h4 {
   }
 
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)) !important;
-    gap: 1rem !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
   }
 
   .project.skills-grid {
@@ -1636,9 +1638,8 @@ h1, h2, h3, h4 {
   }
 
   .container {
-    width: 100% !important;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
   }
 
   .typing-container {
