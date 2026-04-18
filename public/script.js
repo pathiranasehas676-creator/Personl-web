@@ -222,16 +222,21 @@ function renderExperience(exp) {
         div.className = 'exp-item reveal slide-up';
         div.style.transitionDelay = `${index * 0.1}s`;
         div.innerHTML = `
-            <div class="exp-date">
-                <span class="glass-badge">${item.type}</span>
-                <p>${item.period}</p>
-            </div>
-            <div class="exp-content">
-                <h3 class="exp-title">${item.title}</h3>
-                <p class="exp-company">${item.company}</p>
-                <ul class="exp-desc">
-                    ${Array.isArray(item.description) ? item.description.map(d => `<li>${d}</li>`).join('') : `<li>${item.description}</li>`}
-                </ul>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-type">${item.type || 'Experience'}</span>
+                    <h3 class="exp-title">${item.title}</h3>
+                    <div class="exp-company">
+                        <i class="fas fa-building"></i>
+                        <span>${item.company}</span>
+                        <span class="ms-auto text-dim" style="font-size: 0.9rem;">${item.period}</span>
+                    </div>
+                </div>
+                <div class="exp-body">
+                    <ul class="exp-list">
+                        ${Array.isArray(item.description) ? item.description.map(d => `<li>${d}</li>`).join('') : `<li>${item.description}</li>`}
+                    </ul>
+                </div>
             </div>
         `;
         container.appendChild(div);
@@ -247,12 +252,17 @@ function renderEducation(edu) {
         div.className = 'exp-item reveal slide-up';
         div.style.transitionDelay = `${index * 0.1}s`;
         div.innerHTML = `
-            <div class="exp-date">
-                <p>${item.period}</p>
-            </div>
-            <div class="exp-content">
-                <h3 class="exp-title">${item.degree}</h3>
-                <p class="exp-company">${item.institution} <span class="status-badge">${item.status}</span></p>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-type">Education</span>
+                    <h3 class="exp-title">${item.degree}</h3>
+                    <div class="exp-company">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>${item.institution}</span>
+                        <span class="status-badge" style="margin-left: 1rem; font-size: 0.7rem; padding: 2px 8px; border: 1px solid var(--primary); border-radius: 4px; color: var(--primary);">${item.status}</span>
+                    </div>
+                    <p class="text-dim mt-2" style="font-size: 0.9rem;">${item.period}</p>
+                </div>
             </div>
         `;
         container.appendChild(div);
