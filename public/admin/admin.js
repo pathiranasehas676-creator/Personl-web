@@ -60,9 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-links li');
     const viewSections = document.querySelectorAll('.view-section');
     const currentViewTitle = document.getElementById('current-view-title');
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    // Mobile Menu Toggle
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
+                sidebar.classList.remove('active');
+            }
             navLinks.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
             

@@ -104,17 +104,12 @@ async function initializeCMS() {
             renderProjects(projectsData.data);
         }
 
-        // Initial reveal refresh for dynamic items
-        refreshReveal();
-
-        // Fetch Experience/Education
-        const expRes = await fetch('/api/experience');
-        const expData = await expRes.json();
-        if (expData.success) renderExperience(expData.data);
-
         const eduRes = await fetch('/api/education');
         const eduData = await eduRes.json();
         if (eduData.success) renderEducation(eduData.data);
+
+        // Final refresh after all content is ready
+        refreshReveal();
 
     } catch (err) {
         console.error('CMS Initialization Failed:', err);
@@ -137,12 +132,13 @@ function renderSkills(skills) {
         { name: 'Soft + Practical Skills', icon: 'fa-brain', color: '#fbbf24' }
     ];
 
-    categories.forEach(cat => {
+    categories.forEach((cat, index) => {
         const catSkills = skills.filter(s => s.category === cat.name);
         if (catSkills.length === 0) return;
 
         const catDiv = document.createElement('div');
-        catDiv.className = 'skill-category glass-card hover-glow reveal';
+        catDiv.className = 'skill-category glass-card hover-glow reveal slide-up';
+        catDiv.style.transitionDelay = `${index * 0.1}s`;
         catDiv.innerHTML = `
             <div class="skill-icon-wrapper">
                 <i class="fa-solid ${cat.icon}" style="color: ${cat.color}"></i>
@@ -159,7 +155,6 @@ function renderSkills(skills) {
         `;
         grid.appendChild(catDiv);
     });
-    refreshReveal();
 }
 
 function renderProjects(projects) {
@@ -173,7 +168,8 @@ function renderProjects(projects) {
     
     projects.forEach((p, index) => {
         const card = document.createElement('div');
-        card.className = 'project-card reveal';
+        card.className = 'project-card reveal slide-up';
+        card.style.transitionDelay = `${index * 0.15}s`;
         // Use DB provided gradient/icon or fallback
         const gradClass = p.gradient_class || `bg-gradient-${(index % 3) + 1}`;
         const iconClass = p.icon_class || 'fa-solid fa-code';
@@ -201,16 +197,16 @@ function renderProjects(projects) {
         `;
         grid.appendChild(card);
     });
-    refreshReveal();
 }
 
 function renderExperience(exp) {
     const container = document.getElementById('experience-timeline');
     if (!container || !exp.length) return;
     container.innerHTML = '';
-    exp.forEach(item => {
+    exp.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'exp-item reveal slide-up';
+        div.style.transitionDelay = `${index * 0.1}s`;
         div.innerHTML = `
             <div class="exp-date">
                 <span class="glass-badge">${item.type}</span>
@@ -232,9 +228,10 @@ function renderEducation(edu) {
     const container = document.getElementById('education-timeline');
     if (!container || !edu.length) return;
     container.innerHTML = '';
-    edu.forEach(item => {
+    edu.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'exp-item reveal slide-up';
+        div.style.transitionDelay = `${index * 0.1}s`;
         div.innerHTML = `
             <div class="exp-date">
                 <p>${item.period}</p>
@@ -248,15 +245,38 @@ function renderEducation(edu) {
     });
 }
 
+// Magnetic Button Effect
+function initMagneticButtons() {
+    const magneticBtns = document.querySelectorAll('.btn-primary, .btn-icon, .btn-outline');
+    
+    magneticBtns.forEach(btn => {
+        btn.classList.add('magnetic');
+        
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0px, 0px)';
+        });
+    });
+}
+
 // Start typing effect and CMS load when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeCMS().then(() => {
         if (typingText) setTimeout(type, 1000);
         
+        // Initialize interactive effects after content is loaded
+        initMagneticButtons();
+        
         // Refresh intersection observer for new dynamic elements
         setTimeout(() => {
-            const newRevealElements = document.querySelectorAll('.reveal');
-            newRevealElements.forEach(el => revealObserver.observe(el));
+            refreshReveal();
         }, 500);
     });
 });
