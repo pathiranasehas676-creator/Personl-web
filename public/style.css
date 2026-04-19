@@ -1568,15 +1568,16 @@ h1, h2, h3, h4 {
   }
 
   .skills-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 15px !important;
-    padding: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 0.5rem 0 !important;
   }
 
   .skill-card {
     height: auto !important;
-    min-height: unset !important;
-    padding: 1.25rem !important;
+    min-height: 280px !important;
+    padding: 1.5rem !important;
+    border-radius: 20px !important;
   }
 
   .skill-card .project-title {
